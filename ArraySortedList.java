@@ -15,7 +15,7 @@ public class ArraySortedList<T extends Comparable<? super T>> implements SortedL
      */
     @SuppressWarnings("unchecked")
     public ArraySortedList() {
-        this.list = new Comparable[DEFAULT_CAPACITY];
+        this.list = (T[]) new Comparable[DEFAULT_CAPACITY];
         this.length = 0;
     }
 
@@ -26,7 +26,7 @@ public class ArraySortedList<T extends Comparable<? super T>> implements SortedL
      */
     @SuppressWarnings("unchecked")
     public ArraySortedList(int capacity) {
-        this.list = new Comparable[capacity];
+        this.list = (T[]) new Comparable[capacity];
         this.length = 0;
     }
 
@@ -213,9 +213,9 @@ public class ArraySortedList<T extends Comparable<? super T>> implements SortedL
      *         the returned array is empty.
      */
     @Override
-    public Comparable[] toArray() {
-        @SuppressWarnings("unchecked")
-        Comparable[] result = new Comparable[length];
+    @SuppressWarnings("unchecked")
+    public T[] toArray() {
+        T[] result = (T[]) new Comparable[length];
         for (int i = 0; i < length; i++) {
             result[i] = list[i];
         }
