@@ -117,7 +117,7 @@ public class LinkedListSortedList<T extends Comparable<? super T>> implements So
         }
 
         // Entry would be added at the end
-        return -position;
+        return -(length + 1);
     }
 
     /**
@@ -232,9 +232,12 @@ public class LinkedListSortedList<T extends Comparable<? super T>> implements So
      *         the returned array is empty.
      */
     @Override
+    @SuppressWarnings("unchecked")
     public T[] toArray() {
-        @SuppressWarnings("unchecked")
-        T[] result = (T[]) new Comparable[length];
+        T[] result = (T[]) java.lang.reflect.Array.newInstance(
+            firstNode == null ? Comparable.class : firstNode.data.getClass(), 
+            length
+        );
 
         Node currentNode = firstNode;
         for (int i = 0; i < length; i++) {
