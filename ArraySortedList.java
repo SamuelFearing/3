@@ -51,7 +51,7 @@ public class ArraySortedList<T extends Comparable<? super T>> implements SortedL
         }
 
         // Shift elements to the right
-        for (int i = length; i >= position; i--) {
+        for (int i = length; i > position - 1; i--) {
             list[i] = list[i - 1];
         }
 
@@ -65,7 +65,7 @@ public class ArraySortedList<T extends Comparable<? super T>> implements SortedL
      */
     @SuppressWarnings("unchecked")
     private void doubleCapacity() {
-        T[] newList = new Comparable[list.length * 2];
+        T[] newList = (T[]) new Comparable[list.length * 2];
         for (int i = 0; i < length; i++) {
             newList[i] = list[i];
         }
